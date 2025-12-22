@@ -4,8 +4,12 @@
 
 <span
   role="link"
+  tabindex="0"
   style="--i18n-align:{browser.i18n.getMessage('@@bidi_end_edge')}"
   on:click={() => browser.runtime.openOptionsPage()}
+  on:keydown={(e) => {
+    if (e.key === "Enter" || e.key === " ") browser.runtime.openOptionsPage();
+  }}
 >
   {browser.i18n.getMessage("configurationLink")}
 </span>

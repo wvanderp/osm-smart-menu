@@ -88,7 +88,15 @@
       {/if}
     </label>
   {:else}
-    <div class="deleted" role="link" on:click={restoreDeletedConfig}>
+    <div
+      class="deleted"
+      role="link"
+      tabindex="0"
+      on:click={restoreDeletedConfig}
+      on:keydown={(e) => {
+        if (e.key === "Enter" || e.key === " ") restoreDeletedConfig();
+      }}
+    >
       {browser.i18n.getMessage("config_linkDeleted", getSiteTitle(siteConfig))}
     </div>
   {/if}

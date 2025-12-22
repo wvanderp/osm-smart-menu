@@ -14,7 +14,6 @@ import {
   getSitesConfiguration,
   SiteConfiguration,
 } from "../storage/config-handler";
-// @ts-expect-error
 import App from "./App.svelte";
 import { OsmAttribute } from "../sites-configuration";
 
