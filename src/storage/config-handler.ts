@@ -1,7 +1,8 @@
 import Browser from "webextension-polyfill";
-import { Storage } from "webextension-polyfill";
-import { Sites, DefaultSiteConfiguration } from "../sites-configuration";
-import { UrlPattern } from "../popup/sites-manipulation-helper";
+import type { Storage } from "webextension-polyfill";
+import { Sites } from "../sites-configuration";
+import type { DefaultSiteConfiguration } from "../sites-configuration";
+import type { UrlPattern } from "../popup/sites-manipulation-helper";
 
 export type StoredConfiguration = {
   isEnabled: boolean;

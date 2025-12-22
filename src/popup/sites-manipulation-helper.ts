@@ -1,10 +1,10 @@
-import {
+import type {
   DefaultSiteConfiguration,
   ParamOpt,
   OsmAttribute,
 } from "../sites-configuration";
-import { ContentScriptOutputMessage } from "../injectable-content-script";
-import { SiteConfiguration } from "../storage/config-handler";
+import type { ContentScriptOutputMessage } from "../injectable-content-script";
+import type { SiteConfiguration } from "../storage/config-handler";
 import escaperegexp from "lodash.escaperegexp";
 
 const naturalNumberRegExp = "[0-9]+";

@@ -9,7 +9,8 @@
   import ErrorMessage from "./components/ErrorMessage.svelte";
   import ShowEnabledLinksButton from "./components/ShowEnabledLinksButton.svelte";
 
-  export let eventualSitesOrError: EventualSitesOrError;
+  let { eventualSitesOrError }: { eventualSitesOrError: EventualSitesOrError } =
+    $props();
 </script>
 
 <ConfigurationLink />

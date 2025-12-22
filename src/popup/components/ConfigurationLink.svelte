@@ -6,8 +6,8 @@
   role="link"
   tabindex="0"
   style="--i18n-align:{Browser.i18n.getMessage('@@bidi_end_edge')}"
-  on:click={() => Browser.runtime.openOptionsPage()}
-  on:keydown={(e) => {
+  onclick={() => Browser.runtime.openOptionsPage()}
+  onkeydown={(e) => {
     if (e.key === "Enter" || e.key === " ") Browser.runtime.openOptionsPage();
   }}
 >

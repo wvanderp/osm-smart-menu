@@ -1,4 +1,5 @@
-import Browser, { Runtime } from "webextension-polyfill";
+import Browser from "webextension-polyfill";
+import type { Runtime } from "webextension-polyfill";
 
 export async function idempotentMigrations(
   _details: Runtime.OnInstalledDetailsType

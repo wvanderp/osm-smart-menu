@@ -1,5 +1,6 @@
 import Browser from "webextension-polyfill";
-import { Sites, OsmAttribute } from "./sites-configuration";
+import { Sites } from "./sites-configuration";
+import type { OsmAttribute } from "./sites-configuration";
 
 Browser.runtime.onMessage.addListener(
   async (message: unknown): Promise<ContentScriptOutputMessage> => {

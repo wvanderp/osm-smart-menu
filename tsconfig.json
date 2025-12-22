@@ -12,6 +12,7 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
+    "verbatimModuleSyntax": true,
   },
   "include": [
     "src/**/*"

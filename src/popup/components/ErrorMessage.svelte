@@ -3,25 +3,30 @@
   import { KnownError, openLink } from "../utils";
   import InfoBox from "./InfoBox.svelte";
 
-  export let error: KnownError;
+  let { error }: { error: KnownError } = $props();
 
   const linkPlaceholder = "__LINK__";
-  const text = Browser.i18n.getMessage(`error_${error}`, linkPlaceholder);
-  const linkText = "jgpacker/osm-smart-menu";
-  const [firstPart, lastPart] = text.split(linkPlaceholder);
-  const errorMessage = {
-    firstPart,
-    linkText,
-    linkHref: `https://github.com/${linkText}/blob/master/README.md#osm-smart-menu`,
-    lastPart,
-  };
+  const errorMessage = $derived.by(() => {
+    const text = Browser.i18n.getMessage(`error_${error}`, linkPlaceholder);
+    const linkText = "jgpacker/osm-smart-menu";
+    const [firstPart, lastPart] = text.split(linkPlaceholder);
+    return {
+      firstPart,
+      linkText,
+      linkHref: `https://github.com/${linkText}/blob/master/README.md#osm-smart-menu`,
+      lastPart,
+    };
+  });
 </script>
 
 <InfoBox>
   {errorMessage.firstPart}
   <a
     href={errorMessage.linkHref}
-    on:click|preventDefault={() => openLink(errorMessage.linkHref)}
+    onclick={(e) => {
+      e.preventDefault();
+      openLink(errorMessage.linkHref);
+    }}
   >
     {errorMessage.linkText}
   </a>

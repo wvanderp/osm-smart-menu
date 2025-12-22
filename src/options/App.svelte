@@ -3,9 +3,9 @@
   import ConfigurableLine from "./components/ConfigurableLine.svelte";
   import type { SiteConfiguration } from "../storage/config-handler";
 
-  export let sitesConfig: SiteConfiguration[];
+  let { sitesConfig }: { sitesConfig: SiteConfiguration[] } = $props();
 
-  let currentEditableLinkById: string | undefined;
+  let currentEditableLinkById: string | undefined = $state();
 </script>
 
 <div>

@@ -3,8 +3,9 @@ import {
   getRelevantSites,
   pickWinningCandidate,
 } from "./sites-manipulation-helper";
-import { SiteConfiguration } from "../storage/config-handler";
-import { Sites, OsmAttribute } from "../sites-configuration";
+import type { SiteConfiguration } from "../storage/config-handler";
+import { Sites } from "../sites-configuration";
+import type { OsmAttribute } from "../sites-configuration";
 
 const aDefaultSiteConfig: SiteConfiguration = {
   id: "test1",

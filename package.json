@@ -15,25 +15,26 @@
     "url": "https://github.com/jgpacker/osm-smart-menu/issues"
   },
   "dependencies": {
-    "@types/dragula": "^3.7.0",
-    "@types/lodash.escaperegexp": "^4.1.6",
-    "dragula": "^3.7.2",
+    "@types/dragula": "^3.7.5",
+    "@types/lodash.escaperegexp": "^4.1.9",
+    "dragula": "^3.7.3",
     "lodash.escaperegexp": "^4.1.2"
   },
   "devDependencies": {
-    "@types/jest": "^29.0.0",
+    "@types/jest": "^30.0.0",
     "@types/webextension-polyfill": "^0.12.4",
-    "jest": "^29.0.0",
-    "svelte": "^4.0.0",
-    "svelte-check": "^3.4.3",
-    "svelte-loader": "^3.1.8",
-    "svelte-preprocess": "^5.0.3",
-    "ts-jest": "^29.0.0",
-    "ts-loader": "^9.0.0",
-    "typescript": "^5.0.0",
-    "web-ext": "^6.5.0",
+    "@typescript-eslint/types": "^8.50.1",
+    "jest": "^30.2.0",
+    "svelte": "^5.46.0",
+    "svelte-check": "^4.3.5",
+    "svelte-loader": "^3.2.4",
+    "svelte-preprocess": "^6.0.3",
+    "ts-jest": "^29.4.6",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "web-ext": "^9.2.0",
     "webextension-polyfill": "^0.12.0",
-    "webpack": "^5.30.0",
-    "webpack-cli": "^4.6.0"
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1"
   }
 }

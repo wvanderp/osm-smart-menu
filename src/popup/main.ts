@@ -1,21 +1,21 @@
 import Browser from "webextension-polyfill";
-import {
+import type {
   ContentScriptOutputMessage,
   ContentScriptInputMessage,
 } from "../injectable-content-script";
-import { KnownError, CustomUserOption } from "./utils";
+import { KnownError } from "./utils";
+import type { CustomUserOption } from "./utils";
 import {
   findSiteCandidates,
   pickWinningCandidate,
   getRelevantSites,
-  SiteLink,
 } from "./sites-manipulation-helper";
-import {
-  getSitesConfiguration,
-  SiteConfiguration,
-} from "../storage/config-handler";
+import type { SiteLink } from "./sites-manipulation-helper";
+import { getSitesConfiguration } from "../storage/config-handler";
+import type { SiteConfiguration } from "../storage/config-handler";
+import { mount } from "svelte";
 import App from "./App.svelte";
-import { OsmAttribute } from "../sites-configuration";
+import type { OsmAttribute } from "../sites-configuration";
 
 export type EventualSitesOrError = Promise<
   | {
@@ -32,7 +32,7 @@ export type EventualSitesOrError = Promise<
 >;
 
 const eventualSitesOrError: EventualSitesOrError = getSitesOrError();
-new App({
+mount(App, {
   target: document.body,
   props: { eventualSitesOrError },
 });

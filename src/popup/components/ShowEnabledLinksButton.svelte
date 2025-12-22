@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
   export function getEnabledLinks(
     config: SiteConfiguration[],
     currentSiteId: string | undefined,
@@ -54,21 +54,31 @@
   import LinkList from "./LinkList.svelte";
   import type { OsmAttribute } from "../../sites-configuration";
 
-  export let config: SiteConfiguration[];
-  export let currentSiteId: string | undefined = undefined;
-  export let currentlyShownLinks: SiteLink[] = [];
-  export let extractedParameters: Partial<Record<OsmAttribute, string>> = {};
+  let { 
+    config, 
+    currentSiteId = undefined, 
+    currentlyShownLinks = [], 
+    extractedParameters = {} 
+  }: { 
+    config: SiteConfiguration[]; 
+    currentSiteId?: string | undefined; 
+    currentlyShownLinks?: SiteLink[]; 
+    extractedParameters?: Partial<Record<OsmAttribute, string>>; 
+  } = $props();
 
-  let enabledLinks: SiteLink[] | undefined;
+  let enabledLinks: SiteLink[] | undefined = $state();
 
-  const restOfEnabledLinks: Set<string> = new Set();
-  config.forEach((linkConfig) => {
-    if (
-      linkConfig.isEnabled &&
-      currentlyShownLinks.every((link) => link.id !== linkConfig.id)
-    ) {
-      restOfEnabledLinks.add(linkConfig.id);
-    }
+  const restOfEnabledLinks: Set<string> = $derived.by(() => {
+    const result = new Set<string>();
+    config.forEach((linkConfig) => {
+      if (
+        linkConfig.isEnabled &&
+        currentlyShownLinks.every((link) => link.id !== linkConfig.id)
+      ) {
+        result.add(linkConfig.id);
+      }
+    });
+    return result;
   });
 </script>
 
@@ -81,7 +91,7 @@
   {:else}
     <div id="fix-button-margin">
       <button
-        on:click={() =>
+        onclick={() =>
           (enabledLinks = getEnabledLinks(
             config,
             currentSiteId,

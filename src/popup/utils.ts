@@ -1,5 +1,5 @@
 import Browser from "webextension-polyfill";
-import { UrlPattern } from "./sites-manipulation-helper";
+import type { UrlPattern } from "./sites-manipulation-helper";
 
 export type CustomUserOption = {
   defaultName: string;
