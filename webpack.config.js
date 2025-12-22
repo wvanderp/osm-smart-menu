@@ -28,7 +28,6 @@ module.exports = {
         use: {
           loader: "svelte-loader",
           options: {
-            preprocess: sveltePreprocess(),
             compilerOptions: {
               dev: false,
             },

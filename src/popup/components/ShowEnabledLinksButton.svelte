@@ -54,16 +54,16 @@
   import LinkList from "./LinkList.svelte";
   import type { OsmAttribute } from "../../sites-configuration";
 
-  let { 
-    config, 
-    currentSiteId = undefined, 
-    currentlyShownLinks = [], 
-    extractedParameters = {} 
-  }: { 
-    config: SiteConfiguration[]; 
-    currentSiteId?: string | undefined; 
-    currentlyShownLinks?: SiteLink[]; 
-    extractedParameters?: Partial<Record<OsmAttribute, string>>; 
+  let {
+    config,
+    currentSiteId = undefined,
+    currentlyShownLinks = [],
+    extractedParameters = {},
+  }: {
+    config: SiteConfiguration[];
+    currentSiteId?: string | undefined;
+    currentlyShownLinks?: SiteLink[];
+    extractedParameters?: Partial<Record<OsmAttribute, string>>;
   } = $props();
 
   let enabledLinks: SiteLink[] | undefined = $state();
