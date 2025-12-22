@@ -1,4 +1,5 @@
-import { browser, Storage } from "webextension-polyfill-ts";
+import Browser from "webextension-polyfill";
+import { Storage } from "webextension-polyfill";
 import { Sites, DefaultSiteConfiguration } from "../sites-configuration";
 import { UrlPattern } from "../popup/sites-manipulation-helper";
 
@@ -10,7 +11,7 @@ export type StoredConfiguration = {
 
 // needs fallback https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/sync#Browser_compatibility
 const storage: Storage.StorageArea =
-  browser.storage.sync || browser.storage.local;
+  Browser.storage.sync || Browser.storage.local;
 
 const getConfigKey = (siteId: string) => `site_${siteId}`;
 
@@ -31,7 +32,7 @@ async function getStoredConfig(siteId: string): Promise<StoredConfiguration> {
     typeof storedObject[key] === "object" &&
     storedObject[key]
   ) {
-    const s = storedObject[key];
+    const s = storedObject[key] as Partial<StoredConfiguration>;
     const siteConfig: StoredConfiguration = {
       isEnabled:
         typeof s.isEnabled !== "undefined"

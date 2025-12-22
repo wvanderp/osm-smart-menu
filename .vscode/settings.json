@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
-        "openstreetmap"
+        "openstreetmap",
+        "webextension"
     ],
     "editor.formatOnSave": true
 }

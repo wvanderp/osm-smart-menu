@@ -1,4 +1,4 @@
-import { browser } from "webextension-polyfill-ts";
+import Browser from "webextension-polyfill";
 import {
   ContentScriptOutputMessage,
   ContentScriptInputMessage,
@@ -39,7 +39,7 @@ new App({
 
 async function getSitesOrError(): EventualSitesOrError {
   const config = await getSitesConfiguration();
-  const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+  const tabs = await Browser.tabs.query({ active: true, currentWindow: true });
   const currentTab = tabs[0];
   if (!currentTab || !currentTab.url || !currentTab.id) {
     const error = KnownError.NO_ACCESS;
@@ -89,12 +89,13 @@ async function getDataFromContentScript(
   candidateSiteIds: string[]
 ): Promise<ContentScriptOutputMessage | undefined> {
   try {
-    await browser.tabs.executeScript(tabId, {
-      file: "/injectable-content-script.js",
+    await Browser.scripting.executeScript({
+      target: { tabId },
+      files: ["/injectable-content-script.js"],
     });
 
     const message: ContentScriptInputMessage = { candidateSiteIds };
-    return (await browser.tabs.sendMessage(
+    return (await Browser.tabs.sendMessage(
       tabId,
       message
     )) as ContentScriptOutputMessage;

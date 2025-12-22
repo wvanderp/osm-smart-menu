@@ -1,6 +1,6 @@
 <script lang="ts">
+  import Browser from "webextension-polyfill";
   import { SiteLink } from "../sites-manipulation-helper";
-  import { browser } from "webextension-polyfill-ts";
   import { openLink } from "../utils";
   import InfoBox from "./InfoBox.svelte";
 
@@ -14,10 +14,10 @@
     class="site"
     on:click|preventDefault={() => openLink(site.url)}
   >
-    {site.customName || browser.i18n.getMessage(`site_${site.id}`) || "???"}
+    {site.customName || Browser.i18n.getMessage(`site_${site.id}`) || "???"}
   </a>
 {:else}
-  <InfoBox>{browser.i18n.getMessage("noEnabledCompatibleLinksFound")}</InfoBox>
+  <InfoBox>{Browser.i18n.getMessage("noEnabledCompatibleLinksFound")}</InfoBox>
 {/each}
 
 <style>

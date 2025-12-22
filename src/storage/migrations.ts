@@ -1,4 +1,4 @@
-import { browser, Runtime } from "webextension-polyfill-ts";
+import Browser, { Runtime } from "webextension-polyfill";
 
 export async function idempotentMigrations(
   _details: Runtime.OnInstalledDetailsType
@@ -7,12 +7,12 @@ export async function idempotentMigrations(
 }
 
 async function migrateLocalStorageToSyncStorage() {
-  if (!browser.storage.sync) return; // a safeguard for browsers that do not support storage.sync
+  if (!Browser.storage.sync) return; // a safeguard for browsers that do not support storage.sync
 
-  const localData = await browser.storage.local.get();
+  const localData = await Browser.storage.local.get();
   if (localData && Object.keys(localData).length > 0) {
-    await browser.storage.sync.set(localData);
-    await browser.storage.local.clear();
+    await Browser.storage.sync.set(localData);
+    await Browser.storage.local.clear();
     console.log(
       "Data migrated from local storage to sync storage:",
       JSON.stringify(localData)

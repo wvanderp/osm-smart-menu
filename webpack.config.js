@@ -1,4 +1,5 @@
 const path = require("path");
+const sveltePreprocess = require("svelte-preprocess");
 
 module.exports = {
   optimization: {
@@ -27,7 +28,11 @@ module.exports = {
         use: {
           loader: "svelte-loader",
           options: {
-            preprocess: require("svelte-preprocess")({}), // TypeScript support
+            preprocess: sveltePreprocess(),
+            compilerOptions: {
+              dev: false,
+            },
+            emitCss: false,
           },
         },
         exclude: /node_modules/,
@@ -36,7 +41,10 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".svelte", ".mjs"],
-    alias: { svelte: path.resolve("node_modules", "svelte") },
+    alias: {
+      svelte: path.resolve("node_modules", "svelte/src/runtime"),
+    },
     mainFields: ["svelte", "browser", "module", "main"],
+    conditionNames: ["svelte", "browser"],
   },
 };

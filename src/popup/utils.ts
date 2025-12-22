@@ -1,4 +1,4 @@
-import { browser } from "webextension-polyfill-ts";
+import Browser from "webextension-polyfill";
 import { UrlPattern } from "./sites-manipulation-helper";
 
 export type CustomUserOption = {
@@ -13,5 +13,5 @@ export enum KnownError {
 }
 
 export function openLink(url: string): void {
-  browser.tabs.create({ url });
+  Browser.tabs.create({ url });
 }

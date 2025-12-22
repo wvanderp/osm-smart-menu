@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Browser from "webextension-polyfill";
   import {
     addNewUrlPattern,
     updateStoredConfig,
@@ -6,7 +7,6 @@
     deleteUrlPattern,
   } from "../../storage/config-handler";
   import type { SiteConfiguration } from "../../storage/config-handler";
-  import { browser } from "webextension-polyfill-ts";
   import { dragHandleClass } from "../utils";
   export let siteConfig: SiteConfiguration;
   export let currentEditableLinkById: string | undefined;
@@ -18,7 +18,7 @@
   function getSiteTitle(siteConfig: SiteConfiguration) {
     return (
       siteConfig.customName ||
-      browser.i18n.getMessage(`site_${siteConfig.id}`) ||
+      Browser.i18n.getMessage(`site_${siteConfig.id}`) ||
       "???"
     );
   }
@@ -73,16 +73,16 @@
           on:click|preventDefault={() =>
             (currentEditableLinkById = siteConfig.id)}
         >
-          {browser.i18n.getMessage("config_editButton")}
+          {Browser.i18n.getMessage("config_editButton")}
         </button>
       {:else}
         <input type="text" bind:value={siteTitle} />
         <button class="save" on:click={updateTitle}>
-          {browser.i18n.getMessage("config_saveButton")}
+          {Browser.i18n.getMessage("config_saveButton")}
         </button>
         {#if siteConfig.customPattern}
           <button class="delete" on:click={deleteConfig}>
-            {browser.i18n.getMessage("config_deleteButton")}
+            {Browser.i18n.getMessage("config_deleteButton")}
           </button>
         {/if}
       {/if}
@@ -97,7 +97,7 @@
         if (e.key === "Enter" || e.key === " ") restoreDeletedConfig();
       }}
     >
-      {browser.i18n.getMessage("config_linkDeleted", getSiteTitle(siteConfig))}
+      {Browser.i18n.getMessage("config_linkDeleted", getSiteTitle(siteConfig))}
     </div>
   {/if}
 {/if}

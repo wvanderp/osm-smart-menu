@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { browser } from "webextension-polyfill-ts";
+  import Browser from "webextension-polyfill";
   import { UrlPattern } from "../../popup/sites-manipulation-helper";
   import { addNewUrlPattern } from "../../storage/config-handler";
 
@@ -24,13 +24,13 @@
 
 <form action="#" on:submit={onFormSubmit}>
   <fieldset>
-    <legend>{browser.i18n.getMessage("config_pattern_formTitle")}</legend>
+    <legend>{Browser.i18n.getMessage("config_pattern_formTitle")}</legend>
     <label>
-      {browser.i18n.getMessage("config_pattern_name")}
+      {Browser.i18n.getMessage("config_pattern_name")}
       <input type="text" required bind:value={linkName} />
     </label>
     <label>
-      {browser.i18n.getMessage("config_pattern_urlTemplate")}
+      {Browser.i18n.getMessage("config_pattern_urlTemplate")}
       <input
         type="url"
         required
@@ -40,7 +40,7 @@
       />
     </label>
     <button type="submit">
-      {browser.i18n.getMessage("config_pattern_createOption")}
+      {Browser.i18n.getMessage("config_pattern_createOption")}
     </button>
   </fieldset>
 </form>

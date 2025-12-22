@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { browser } from "webextension-polyfill-ts";
+  import Browser from "webextension-polyfill";
   import { KnownError, openLink } from "../utils";
   import InfoBox from "./InfoBox.svelte";
 
   export let error: KnownError;
 
   const linkPlaceholder = "__LINK__";
-  const text = browser.i18n.getMessage(`error_${error}`, linkPlaceholder);
+  const text = Browser.i18n.getMessage(`error_${error}`, linkPlaceholder);
   const linkText = "jgpacker/osm-smart-menu";
   const [firstPart, lastPart] = text.split(linkPlaceholder);
   const errorMessage = {

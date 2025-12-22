@@ -1,17 +1,17 @@
 <script>
-  import { browser } from "webextension-polyfill-ts";
+  import Browser from "webextension-polyfill";
 </script>
 
 <span
   role="link"
   tabindex="0"
-  style="--i18n-align:{browser.i18n.getMessage('@@bidi_end_edge')}"
-  on:click={() => browser.runtime.openOptionsPage()}
+  style="--i18n-align:{Browser.i18n.getMessage('@@bidi_end_edge')}"
+  on:click={() => Browser.runtime.openOptionsPage()}
   on:keydown={(e) => {
-    if (e.key === "Enter" || e.key === " ") browser.runtime.openOptionsPage();
+    if (e.key === "Enter" || e.key === " ") Browser.runtime.openOptionsPage();
   }}
 >
-  {browser.i18n.getMessage("configurationLink")}
+  {Browser.i18n.getMessage("configurationLink")}
 </span>
 
 <style>

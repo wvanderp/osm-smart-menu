@@ -1,13 +1,13 @@
-import { browser } from "webextension-polyfill-ts";
+import Browser from "webextension-polyfill";
 import { Sites, OsmAttribute } from "./sites-configuration";
 
-browser.runtime.onMessage.addListener(
-  async (
-    message: ContentScriptInputMessage
-  ): Promise<ContentScriptOutputMessage> =>
-    message.candidateSiteIds.length !== 0
-      ? message.candidateSiteIds.map(extractData)
-      : [lookForPermalink()] // helps to get parameters from unknown websites
+Browser.runtime.onMessage.addListener(
+  async (message: unknown): Promise<ContentScriptOutputMessage> => {
+    const typedMessage = message as ContentScriptInputMessage;
+    return typedMessage.candidateSiteIds.length !== 0
+      ? typedMessage.candidateSiteIds.map(extractData)
+      : [lookForPermalink()]; // helps to get parameters from unknown websites
+  }
 );
 
 export type ContentScriptOutputMessage = ExtractedData[];

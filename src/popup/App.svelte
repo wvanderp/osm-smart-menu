@@ -1,6 +1,6 @@
 <script lang="ts">
+  import Browser from "webextension-polyfill";
   import type { EventualSitesOrError } from "./main";
-  import { browser } from "webextension-polyfill-ts";
   import { KnownError } from "./utils";
   import ConfigurationLink from "./components/ConfigurationLink.svelte";
   import InfoBox from "./components/InfoBox.svelte";
@@ -16,7 +16,7 @@
 <div>
   {#await eventualSitesOrError}
     <InfoBox>
-      <div class="loading">{browser.i18n.getMessage("loading")}</div>
+      <div class="loading">{Browser.i18n.getMessage("loading")}</div>
     </InfoBox>
   {:then sitesListOrError}
     {#if "sitesList" in sitesListOrError}

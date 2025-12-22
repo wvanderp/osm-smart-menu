@@ -47,7 +47,7 @@
 </script>
 
 <script lang="ts">
-  import { browser } from "webextension-polyfill-ts";
+  import Browser from "webextension-polyfill";
   import { getRelevantSites } from "../sites-manipulation-helper";
   import type { SiteLink } from "../sites-manipulation-helper";
   import type { SiteConfiguration } from "../../storage/config-handler";
@@ -89,7 +89,7 @@
             restOfEnabledLinks
           ))}
       >
-        {browser.i18n.getMessage(
+        {Browser.i18n.getMessage(
           currentlyShownLinks.length === 0
             ? "button_showEnabledLinks"
             : "button_showOtherEnabledLinks"

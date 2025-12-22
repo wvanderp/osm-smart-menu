@@ -1,7 +1,7 @@
 <script lang="ts">
+  import Browser from "webextension-polyfill";
   import { CustomUserOption } from "../utils";
   import { addNewUrlPattern } from "../../storage/config-handler";
-  import { browser } from "webextension-polyfill-ts";
   import InfoBox from "./InfoBox.svelte";
 
   export let customUserOption: CustomUserOption | undefined;
@@ -22,11 +22,11 @@
 {#if customUserOption}
   <InfoBox>
     {#if !optionCreated}
-      {browser.i18n.getMessage("newOptionDetected_notice")}
+      {Browser.i18n.getMessage("newOptionDetected_notice")}
       <button on:click={buttonClick}>
-        {browser.i18n.getMessage("newOptionDetected_buttonText")}
+        {Browser.i18n.getMessage("newOptionDetected_buttonText")}
       </button>
-    {:else}{browser.i18n.getMessage(
+    {:else}{Browser.i18n.getMessage(
         "newOptionDetected_added",
         customUserOption && customUserOption.defaultName
       )}{/if}
