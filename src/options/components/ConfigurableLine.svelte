@@ -56,6 +56,44 @@
   }
 </script>
 
+{#if siteConfig.customPattern || siteConfig.defaultConfiguration}
+  {#if !deleted}
+    <label>
+      <img alt="" class={dragHandleClass} src={dragHandleSrc} />
+      <input
+        type="checkbox"
+        name={siteConfig.id}
+        checked={siteConfig.isEnabled}
+        on:click={toggleIsEnabled}
+      />
+      {#if siteConfig.id !== currentEditableLinkById}
+        {getSiteTitle(siteConfig)}
+        <button
+          class="edit"
+          on:click|preventDefault={() =>
+            (currentEditableLinkById = siteConfig.id)}
+        >
+          {browser.i18n.getMessage("config_editButton")}
+        </button>
+      {:else}
+        <input type="text" bind:value={siteTitle} />
+        <button class="save" on:click={updateTitle}>
+          {browser.i18n.getMessage("config_saveButton")}
+        </button>
+        {#if siteConfig.customPattern}
+          <button class="delete" on:click={deleteConfig}>
+            {browser.i18n.getMessage("config_deleteButton")}
+          </button>
+        {/if}
+      {/if}
+    </label>
+  {:else}
+    <div class="deleted" role="link" on:click={restoreDeletedConfig}>
+      {browser.i18n.getMessage("config_linkDeleted", getSiteTitle(siteConfig))}
+    </div>
+  {/if}
+{/if}
+
 <style>
   label {
     display: flex;
@@ -90,38 +128,3 @@
     margin: 1px 0;
   }
 </style>
-
-{#if siteConfig.customPattern || siteConfig.defaultConfiguration}
-  {#if !deleted}
-    <label>
-      <img alt="" class={dragHandleClass} src={dragHandleSrc} />
-      <input
-        type="checkbox"
-        name={siteConfig.id}
-        checked={siteConfig.isEnabled}
-        on:click={toggleIsEnabled} />
-      {#if siteConfig.id !== currentEditableLinkById}
-        {getSiteTitle(siteConfig)}
-        <button
-          class="edit"
-          on:click|preventDefault={() => (currentEditableLinkById = siteConfig.id)}>
-          {browser.i18n.getMessage('config_editButton')}
-        </button>
-      {:else}
-        <input type="text" bind:value={siteTitle} />
-        <button class="save" on:click={updateTitle}>
-          {browser.i18n.getMessage('config_saveButton')}
-        </button>
-        {#if siteConfig.customPattern}
-          <button class="delete" on:click={deleteConfig}>
-            {browser.i18n.getMessage('config_deleteButton')}
-          </button>
-        {/if}
-      {/if}
-    </label>
-  {:else}
-    <div class="deleted" role="link" on:click={restoreDeletedConfig}>
-      {browser.i18n.getMessage('config_linkDeleted', getSiteTitle(siteConfig))}
-    </div>
-  {/if}
-{/if}

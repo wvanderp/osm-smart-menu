@@ -12,28 +12,24 @@
   export let eventualSitesOrError: EventualSitesOrError;
 </script>
 
-<style>
-  .loading::first-line {
-    font-weight: bold;
-  }
-</style>
-
 <ConfigurationLink />
 <div>
   {#await eventualSitesOrError}
     <InfoBox>
-      <div class="loading">{browser.i18n.getMessage('loading')}</div>
+      <div class="loading">{browser.i18n.getMessage("loading")}</div>
     </InfoBox>
   {:then sitesListOrError}
-    {#if 'sitesList' in sitesListOrError}
+    {#if "sitesList" in sitesListOrError}
       <BasicLinkCreationDialog
-        customUserOption={sitesListOrError.customUserOption} />
+        customUserOption={sitesListOrError.customUserOption}
+      />
       <LinkList siteLinks={sitesListOrError.sitesList} />
       <ShowEnabledLinksButton
         config={sitesListOrError.config}
         currentSiteId={sitesListOrError.currentSiteId}
         currentlyShownLinks={sitesListOrError.sitesList}
-        extractedParameters={sitesListOrError.extractedParameters} />
+        extractedParameters={sitesListOrError.extractedParameters}
+      />
     {:else}
       <ErrorMessage error={sitesListOrError.error} />
       {#if sitesListOrError.error === KnownError.INCOMPATIBLE_WEBSITE || sitesListOrError.error === KnownError.NO_INFORMATION_EXTRACTED}
@@ -42,3 +38,9 @@
     {/if}
   {/await}
 </div>
+
+<style>
+  .loading::first-line {
+    font-weight: bold;
+  }
+</style>

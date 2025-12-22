@@ -2,6 +2,14 @@
   import { browser } from "webextension-polyfill-ts";
 </script>
 
+<span
+  role="link"
+  style="--i18n-align:{browser.i18n.getMessage('@@bidi_end_edge')}"
+  on:click={() => browser.runtime.openOptionsPage()}
+>
+  {browser.i18n.getMessage("configurationLink")}
+</span>
+
 <style>
   span {
     text-transform: lowercase;
@@ -12,10 +20,3 @@
     background-color: #f0f0f0;
   }
 </style>
-
-<span
-  role="link"
-  style="--i18n-align:{browser.i18n.getMessage('@@bidi_end_edge')}"
-  on:click={() => browser.runtime.openOptionsPage()}>
-  {browser.i18n.getMessage('configurationLink')}
-</span>

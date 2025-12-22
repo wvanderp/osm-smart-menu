@@ -72,6 +72,33 @@
   });
 </script>
 
+{#if restOfEnabledLinks.size > 0}
+  {#if currentlyShownLinks.length > 0}
+    <hr />
+  {/if}
+  {#if enabledLinks}
+    <LinkList siteLinks={enabledLinks} />
+  {:else}
+    <div id="fix-button-margin">
+      <button
+        on:click={() =>
+          (enabledLinks = getEnabledLinks(
+            config,
+            currentSiteId,
+            extractedParameters,
+            restOfEnabledLinks
+          ))}
+      >
+        {browser.i18n.getMessage(
+          currentlyShownLinks.length === 0
+            ? "button_showEnabledLinks"
+            : "button_showOtherEnabledLinks"
+        )}
+      </button>
+    </div>
+  {/if}
+{/if}
+
 <style>
   button {
     margin: 5px auto;
@@ -84,19 +111,3 @@
     padding: 0 5px;
   }
 </style>
-
-{#if restOfEnabledLinks.size > 0}
-  {#if currentlyShownLinks.length > 0}
-    <hr />
-  {/if}
-  {#if enabledLinks}
-    <LinkList siteLinks={enabledLinks} />
-  {:else}
-    <div id="fix-button-margin">
-      <button
-        on:click={() => (enabledLinks = getEnabledLinks(config, currentSiteId, extractedParameters, restOfEnabledLinks))}>
-        {browser.i18n.getMessage(currentlyShownLinks.length === 0 ? 'button_showEnabledLinks' : 'button_showOtherEnabledLinks')}
-      </button>
-    </div>
-  {/if}
-{/if}

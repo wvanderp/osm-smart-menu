@@ -9,25 +9,25 @@ module.exports = {
     "injectable-content-script": "./src/injectable-content-script.ts",
     "options/main": "./src/options/main.ts",
     "popup/main": "./src/popup/main.ts",
-    "background-listeners-setup": "./src/background-listeners-setup.ts"
+    "background-listeners-setup": "./src/background-listeners-setup.ts",
   },
   output: {
     path: path.resolve(__dirname, "addon"),
-    filename: "[name].js"
+    filename: "[name].js",
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
       {
         test: /\.(html|svelte)$/,
         use: {
-          loader: 'svelte-loader',
+          loader: "svelte-loader",
           options: {
-            preprocess: require('svelte-preprocess')({}), // TypeScript support
+            preprocess: require("svelte-preprocess")({}), // TypeScript support
           },
         },
         exclude: /node_modules/,
@@ -35,8 +35,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.svelte', '.mjs'],
-    alias: { svelte: path.resolve('node_modules', 'svelte') },
-    mainFields: ['svelte', 'browser', 'module', 'main'],
+    extensions: [".tsx", ".ts", ".js", ".svelte", ".mjs"],
+    alias: { svelte: path.resolve("node_modules", "svelte") },
+    mainFields: ["svelte", "browser", "module", "main"],
   },
 };

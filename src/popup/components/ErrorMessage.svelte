@@ -19,7 +19,10 @@
 
 <InfoBox>
   {errorMessage.firstPart}
-  <a href={errorMessage.linkHref} on:click|preventDefault={() => openLink(errorMessage.linkHref)}>
+  <a
+    href={errorMessage.linkHref}
+    on:click|preventDefault={() => openLink(errorMessage.linkHref)}
+  >
     {errorMessage.linkText}
   </a>
   {errorMessage.lastPart}

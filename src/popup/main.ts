@@ -1,10 +1,21 @@
-import { browser } from 'webextension-polyfill-ts'
-import { ContentScriptOutputMessage, ContentScriptInputMessage } from '../injectable-content-script';
-import { KnownError, CustomUserOption } from './utils';
-import { findSiteCandidates, pickWinningCandidate, getRelevantSites, SiteLink } from './sites-manipulation-helper';
-import { getSitesConfiguration, SiteConfiguration } from '../storage/config-handler';
+import { browser } from "webextension-polyfill-ts";
+import {
+  ContentScriptOutputMessage,
+  ContentScriptInputMessage,
+} from "../injectable-content-script";
+import { KnownError, CustomUserOption } from "./utils";
+import {
+  findSiteCandidates,
+  pickWinningCandidate,
+  getRelevantSites,
+  SiteLink,
+} from "./sites-manipulation-helper";
+import {
+  getSitesConfiguration,
+  SiteConfiguration,
+} from "../storage/config-handler";
 // @ts-expect-error
-import App from './App.svelte';
+import App from "./App.svelte";
 import { OsmAttribute } from "../sites-configuration";
 
 export type EventualSitesOrError = Promise<
@@ -37,8 +48,13 @@ async function getSitesOrError(): EventualSitesOrError {
   }
 
   const candidateSiteIds = findSiteCandidates(config, currentTab.url);
-  const contentScriptResult = await getDataFromContentScript(currentTab.id, candidateSiteIds) ;
-  const currentSite = contentScriptResult && pickWinningCandidate(config, contentScriptResult, currentTab.url);
+  const contentScriptResult = await getDataFromContentScript(
+    currentTab.id,
+    candidateSiteIds
+  );
+  const currentSite =
+    contentScriptResult &&
+    pickWinningCandidate(config, contentScriptResult, currentTab.url);
   if (!currentSite) {
     const error =
       candidateSiteIds.length === 0
@@ -51,11 +67,15 @@ async function getSitesOrError(): EventualSitesOrError {
   if (currentSite.detectedPattern) {
     customUserOption = {
       urlPattern: currentSite.detectedPattern,
-      defaultName: currentTab.title || '???',
+      defaultName: currentTab.title || "???",
     };
   }
 
-  const sitesList = getRelevantSites(config, currentSite.siteId, currentSite.attributes);
+  const sitesList = getRelevantSites(
+    config,
+    currentSite.siteId,
+    currentSite.attributes
+  );
   return {
     config,
     currentSiteId: currentSite.siteId,
@@ -65,12 +85,20 @@ async function getSitesOrError(): EventualSitesOrError {
   };
 }
 
-async function getDataFromContentScript(tabId: number, candidateSiteIds: string[]): Promise<ContentScriptOutputMessage | undefined> {
+async function getDataFromContentScript(
+  tabId: number,
+  candidateSiteIds: string[]
+): Promise<ContentScriptOutputMessage | undefined> {
   try {
-    await browser.tabs.executeScript(tabId, { file: "/injectable-content-script.js" });
+    await browser.tabs.executeScript(tabId, {
+      file: "/injectable-content-script.js",
+    });
 
     const message: ContentScriptInputMessage = { candidateSiteIds };
-    return (await browser.tabs.sendMessage(tabId, message)) as ContentScriptOutputMessage;
+    return (await browser.tabs.sendMessage(
+      tabId,
+      message
+    )) as ContentScriptOutputMessage;
   } catch (e) {
     logUnexpectedError(e);
     return;
@@ -78,8 +106,8 @@ async function getDataFromContentScript(tabId: number, candidateSiteIds: string[
 }
 
 function logUnexpectedError(e: any): void {
-  const errorPrefix = 'OSM WebExtension ERROR';
-  if(e instanceof Error) {
+  const errorPrefix = "OSM WebExtension ERROR";
+  if (e instanceof Error) {
     console.error(errorPrefix, e.message, e.stack);
   } else {
     console.error(errorPrefix, JSON.stringify(e));

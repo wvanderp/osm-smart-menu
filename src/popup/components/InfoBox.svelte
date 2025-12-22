@@ -1,3 +1,7 @@
+<div id="info">
+  <slot />
+</div>
+
 <style>
   #info {
     text-align: center;
@@ -14,7 +18,3 @@
     border-bottom: none;
   }
 </style>
-
-<div id="info">
-  <slot />
-</div>

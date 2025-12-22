@@ -10,11 +10,28 @@
 
   async function buttonClick() {
     if (customUserOption) {
-      await addNewUrlPattern(customUserOption.defaultName, customUserOption.urlPattern);
+      await addNewUrlPattern(
+        customUserOption.defaultName,
+        customUserOption.urlPattern
+      );
       optionCreated = true;
     }
   }
 </script>
+
+{#if customUserOption}
+  <InfoBox>
+    {#if !optionCreated}
+      {browser.i18n.getMessage("newOptionDetected_notice")}
+      <button on:click={buttonClick}>
+        {browser.i18n.getMessage("newOptionDetected_buttonText")}
+      </button>
+    {:else}{browser.i18n.getMessage(
+        "newOptionDetected_added",
+        customUserOption && customUserOption.defaultName
+      )}{/if}
+  </InfoBox>
+{/if}
 
 <style>
   button {
@@ -22,14 +39,3 @@
     margin: 4px auto;
   }
 </style>
-
-{#if customUserOption}
-  <InfoBox>
-    {#if !optionCreated}
-      {browser.i18n.getMessage('newOptionDetected_notice')}
-      <button on:click={buttonClick}>
-        {browser.i18n.getMessage('newOptionDetected_buttonText')}
-      </button>
-    {:else}{browser.i18n.getMessage('newOptionDetected_added', customUserOption && customUserOption.defaultName)}{/if}
-  </InfoBox>
-{/if}
