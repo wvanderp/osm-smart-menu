@@ -21,7 +21,7 @@
       wayId: "1",
       relationId: "1",
       changesetId: "1",
-      userName: "jgpacker",
+      userName: "wvanderp",
       key: "amenity",
       value: "school",
       tracesId: "1",

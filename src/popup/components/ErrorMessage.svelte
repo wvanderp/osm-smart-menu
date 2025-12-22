@@ -8,7 +8,7 @@
   const linkPlaceholder = "__LINK__";
   const errorMessage = $derived.by(() => {
     const text = Browser.i18n.getMessage(`error_${error}`, linkPlaceholder);
-    const linkText = "jgpacker/osm-smart-menu";
+    const linkText = "wvanderp/osm-smart-menu";
     const [firstPart, lastPart] = text.split(linkPlaceholder);
     return {
       firstPart,

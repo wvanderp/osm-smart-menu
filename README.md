@@ -16,7 +16,7 @@ User documentation is available at the [OpenStreetMap Wiki](https://wiki.openstr
 
 ### Report bugs or request features
 
-You can [open a new issue](https://github.com/jgpacker/osm-smart-menu/issues/new)  in Github or [send a message](https://www.openstreetmap.org/message/new/jgpacker) to the author's OpenStreetMap account.
+You can [open a new issue](https://github.com/wvdp/osm-smart-menu/issues/new)  in Github or [send a message](https://www.openstreetmap.org/message/new/wvdp) to the author's OpenStreetMap account.
 
 ### Translations
 

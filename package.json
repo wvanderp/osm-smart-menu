@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jgpacker/osm-smart-menu.git"
+    "url": "git+https://github.com/wvanderp/osm-smart-menu.git"
   },
   "bugs": {
-    "url": "https://github.com/jgpacker/osm-smart-menu/issues"
+    "url": "https://github.com/wvanderp/osm-smart-menu/issues"
   },
   "dependencies": {
     "@types/dragula": "^3.7.5",
