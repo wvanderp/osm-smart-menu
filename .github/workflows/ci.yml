@@ -12,3 +12,8 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: web-ext-artifacts
+          path: web-ext-artifacts/*.zip
